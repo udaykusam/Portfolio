@@ -37,7 +37,9 @@ export default async function ProjectPage({ params }: PageProps<"/projects/[slug
 
       <Reveal>
         <header className="mt-8">
-          <p className="font-mono text-sm uppercase tracking-wider text-accent">{project.kicker}</p>
+          <p className="font-mono text-sm uppercase tracking-wider text-accent">
+            {project.kicker} <span className="text-muted normal-case">· {project.dates}</span>
+          </p>
           <h1 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">{project.title}</h1>
           <p className="mt-5 text-lg leading-relaxed text-muted">{project.summary}</p>
           <div className="mt-8 flex flex-wrap gap-3">

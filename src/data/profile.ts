@@ -5,6 +5,7 @@ export type Project = {
   slug: string;
   title: string;
   kicker: string;
+  dates: string;
   summary: string;
   problem: string;
   highlights: string[];
@@ -35,8 +36,8 @@ export const profile = {
   tagline:
     "Full-stack Software Engineer building fast, reliable web applications with React, Next.js, TypeScript, Node.js and Python, deployed on AWS and Google Cloud.",
   about: [
-    "I'm a Software Engineer with an M.S. in Computer Science from California State University, Fullerton (May 2026), based in Orange County, California. I build full-stack web applications end to end, from React and Next.js frontends through Node.js and Python backends to SQL and NoSQL databases running on AWS and Google Cloud.",
-    "I'm strong in data structures, algorithms, object-oriented design and API design. I like turning messy problems into clean, tested and well-documented systems, and I use AI tools, and build with them, to ship faster. Recent work includes an LLM-powered travel planner and a transformer-based NER system.",
+    "I'm a Software Engineer with an M.S. in Computer Science from California State University, Fullerton (May 2026), based in Placentia, CA. I build full-stack web applications end to end, from React and Next.js frontends through Node.js and Python backends to SQL and NoSQL databases running on AWS and Google Cloud.",
+    "I'm strong in data structures, algorithms, object-oriented design and API design. I like turning messy problems into clean, tested and well-documented systems, and I use AI tools, and build with them, to ship faster. Recent work includes CiteRAG, a document Q&A system with cited answers, and an LLM-powered travel planner.",
   ],
   facts: [
     { label: "Location", value: "Placentia, CA · open to relocation" },
@@ -49,22 +50,71 @@ export const profile = {
 export const skillGroups: SkillGroup[] = [
   { name: "Languages", skills: ["Python", "JavaScript", "TypeScript", "Java", "SQL"] },
   { name: "Frontend", skills: ["React.js", "Next.js", "HTML5", "CSS3", "TailwindCSS"] },
-  { name: "Backend", skills: ["Node.js", "Express.js", "RESTful APIs", "JWT Authentication"] },
+  { name: "Backend", skills: ["Node.js", "Express.js", "FastAPI", "RESTful APIs", "JWT Authentication"] },
   { name: "Databases", skills: ["MySQL", "MongoDB", "Firestore", "Database Design"] },
-  { name: "Cloud & DevOps", skills: ["AWS", "Google Cloud", "MongoDB Atlas", "Vercel", "CI/CD"] },
+  {
+    name: "Cloud & DevOps",
+    skills: [
+      "AWS",
+      "Google Cloud",
+      "Docker",
+      "Kubernetes",
+      "GitHub Actions",
+      "CI/CD",
+      "Prometheus",
+      "Grafana",
+      "MongoDB Atlas",
+      "Vercel",
+    ],
+  },
   {
     name: "AI / ML & Tools",
-    skills: ["Gemini API", "SpaCy", "Transformers", "PyTest", "Postman", "Git", "JIRA", "Streamlit"],
+    skills: [
+      "RAG",
+      "Vector Databases (Qdrant)",
+      "Embeddings",
+      "LLM Evaluation",
+      "PyTorch",
+      "ONNX Runtime",
+      "Gemini API",
+      "SpaCy",
+      "Transformers",
+      "PyTest",
+      "Postman",
+      "Git",
+      "JIRA",
+      "Streamlit",
+    ],
   },
 ];
 
 export const projects: Project[] = [
   {
+    slug: "citerag",
+    title: "CiteRAG – AI Document Q&A with Cited Answers",
+    kicker: "AI / ML · RAG",
+    dates: "Jun 2026 – Sep 2026",
+    summary:
+      "A RAG application that answers questions about uploaded documents with grounded answers and clickable source citations.",
+    problem:
+      "LLMs answer confidently even when they're wrong, and readers can't check where an answer came from. CiteRAG grounds every answer in the user's own documents and links each claim back to its source, with retrieval quality measured, not assumed.",
+    highlights: [
+      "Hybrid search over a Qdrant vector database + BM25 index with a cross-encoder reranker",
+      "LLM-judged evaluation suite: Hit@5 raised from 88.5% to 100%, MRR@5 from 0.70 to 0.87",
+      "Cut response latency 5.5x (930 ms → 170 ms) with ONNX Runtime and int8 quantization",
+      "FastAPI REST services + React/TypeScript UI with real-time streaming answers",
+      "Deployed with Docker and Kubernetes; 79 automated tests in a GitHub Actions CI/CD pipeline; Prometheus + Grafana monitoring",
+    ],
+    tech: ["Python", "FastAPI", "PyTorch", "Qdrant", "React", "TypeScript", "Docker", "Kubernetes"],
+    githubUrl: "https://github.com/udaykusam/RAG",
+  },
+  {
     slug: "ai-travel-planner",
     title: "AI Travel Planner",
     kicker: "Full-stack · Generative AI",
+    dates: "Jan 2026 – May 2026",
     summary:
-      "A full-stack AI travel planning app that generates day-by-day itineraries in under 10 seconds with Google Gemini, then lets users refine them by chatting with it.",
+      "A full-stack AI travel planning app that generates day-by-day itineraries in under 10 seconds with the Gemini API, maps routes with Google Maps and pulls airfare from Google Flights.",
     problem:
       "Planning a trip means juggling flights, maps and dozens of tabs. I wanted one app that drafts a full itinerary instantly, shows it on a map and lets you reshape it by just asking. The hard part was getting reliable, structured output from an LLM.",
     highlights: [
@@ -72,15 +122,16 @@ export const projects: Project[] = [
       "Designed a structured JSON prompting system with a custom parser that reliably extracts nested data from LLM responses, eliminating malformed outputs.",
       "Built a conversational AI chatbot that updates itineraries on the fly and persists changes to Firestore in real time.",
       "Visualized routes with the Google Maps JavaScript API using geocoded markers and polylines.",
-      "Integrated the Amadeus Flight Search API securely on the server for live airfare estimates.",
+      "Integrated Google Flights on the server for live airfare estimates.",
       "Deployed on Vercel with CI/CD from GitHub for automated builds and production releases.",
     ],
-    tech: ["Next.js 14", "TypeScript", "Firebase", "Firestore", "Gemini API", "Google Maps API", "Amadeus API", "Vercel"],
+    tech: ["Next.js 14", "TypeScript", "Gemini API", "Google Maps API", "Google Flights", "Firebase", "Firestore", "Vercel"],
   },
   {
     slug: "food-blog",
     title: "Food Blog & Recipe Platform",
     kicker: "Full-stack · MERN",
+    dates: "2024 – 2025",
     summary:
       "A recipe management platform with authenticated user dashboards, full CRUD for recipes, and fast search and filtering for finding them.",
     problem:
@@ -99,6 +150,7 @@ export const projects: Project[] = [
     slug: "named-entity-recognition",
     title: "Named Entity Recognition System",
     kicker: "Machine Learning · NLP",
+    dates: "2023 – 2024",
     summary:
       "An NER system that uses SpaCy and Transformer-based models to classify people, organizations and locations in text, deployed as an interactive web app.",
     problem:
